@@ -13,6 +13,7 @@ import {
 } from "./pages/questionnare-list/components/unanswered-questions/unanswered-questions.component";
 import {QuestionsService} from "./services/questions.service";
 import {DividerModule} from "primeng/divider";
+import {ButtonModule} from "primeng/button";
 
 const routes: Routes = [
   { path: '', component: QuestionnareListComponent },
@@ -38,7 +39,8 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    DividerModule
+    DividerModule,
+    ButtonModule
   ]
 })
 export class QuestionnareModule { }

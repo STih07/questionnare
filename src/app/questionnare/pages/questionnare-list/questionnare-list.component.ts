@@ -11,7 +11,6 @@ import {map, share, tap} from "rxjs";
 export class QuestionnareListComponent {
 
   private allQuestions = this.questionService.getQuestions$().pipe(
-    // share(),
     tap(() => console.log('Triggered')),
   );
 

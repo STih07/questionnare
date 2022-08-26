@@ -1,3 +1,7 @@
-<app-answered-questions *ngIf="answeredQuestions$ | async as answeredQuestions" [questions]="answeredQuestions"></app-answered-questions>
-<p-divider layout="vertical"></p-divider>
-<app-unanswered-questions *ngIf="unansweredQuestions$ | async as unansweredQuestions" [questions]="unansweredQuestions"></app-unanswered-questions>
+<div class="questions-container">
+  <app-answered-questions *ngIf="answeredQuestions$ | async as answeredQuestions" [questions]="answeredQuestions"></app-answered-questions>
+  <p-divider layout="vertical"></p-divider>
+  <app-unanswered-questions *ngIf="unansweredQuestions$ | async as unansweredQuestions" [questions]="unansweredQuestions"></app-unanswered-questions>
+</div>
+
+<p-button>Create a Question</p-button>
