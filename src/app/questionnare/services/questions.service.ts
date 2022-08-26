@@ -3,9 +3,7 @@ import {STORAGE} from "../utils/storage.key";
 import {BehaviorSubject, Observable, of} from "rxjs";
 import {Question} from "../models/question";
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class QuestionsService {
 
   readonly STORAGE_KEY = 'questions';
@@ -22,7 +20,11 @@ export class QuestionsService {
 
   addQuestion(question: Question) {
     const questions = [...this.questionsState$.value];
-    questions.push({...question, id: this.getNewId()});
+    questions.push({
+      ...question,
+      id: this.getNewId(),
+      createdAt: new Date(),
+    });
     this.updateState(questions);
   }
 

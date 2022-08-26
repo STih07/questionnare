@@ -1,1 +1,3 @@
-<p>questionnare-list works!</p>
+<app-answered-questions *ngIf="answeredQuestions$ | async as answeredQuestions" [questions]="answeredQuestions"></app-answered-questions>
+<p-divider layout="vertical"></p-divider>
+<app-unanswered-questions *ngIf="unansweredQuestions$ | async as unansweredQuestions" [questions]="unansweredQuestions"></app-unanswered-questions>

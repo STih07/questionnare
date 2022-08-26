@@ -6,7 +6,13 @@ import { QuestionnareCreateComponent } from './pages/questionnare-create/questio
 import { QuestionnareViewComponent } from './pages/questionnare-view/questionnare-view.component';
 import {RouterModule, Routes} from "@angular/router";
 import {STORAGE} from "./utils/storage.key";
-
+import { FnPipe } from './utils/fn.pipe';
+import { AnsweredQuestionsComponent } from './pages/questionnare-list/components/answered-questions/answered-questions.component';
+import {
+  UnansweredQuestionsComponent
+} from "./pages/questionnare-list/components/unanswered-questions/unanswered-questions.component";
+import {QuestionsService} from "./services/questions.service";
+import {DividerModule} from "primeng/divider";
 
 const routes: Routes = [
   { path: '', component: QuestionnareListComponent },
@@ -20,14 +26,19 @@ const routes: Routes = [
     QuestionnareListComponent,
      QuestionnareEditComponent,
      QuestionnareCreateComponent,
-     QuestionnareViewComponent
+     QuestionnareViewComponent,
+     FnPipe,
+     AnsweredQuestionsComponent,
+     UnansweredQuestionsComponent,
   ],
   providers: [
-    { provide: STORAGE, useValue: window.localStorage }
+    { provide: STORAGE, useValue: window.localStorage },
+    QuestionsService
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    DividerModule
   ]
 })
 export class QuestionnareModule { }

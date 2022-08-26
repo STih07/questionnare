@@ -1,4 +1,6 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {QuestionsService} from "../../services/questions.service";
+import {map, share, tap} from "rxjs";
 
 @Component({
   selector: 'app-questionnare-list',
@@ -6,11 +8,22 @@ import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
   styleUrls: ['./questionnare-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class QuestionnareListComponent implements OnInit {
+export class QuestionnareListComponent {
 
-  constructor() { }
+  private allQuestions = this.questionService.getQuestions$().pipe(
+    // share(),
+    tap(() => console.log('Triggered')),
+  );
 
-  ngOnInit(): void {
-  }
+  answeredQuestions$ = this.allQuestions.pipe(
+    map(questions => questions.filter(q => !q.answer))
+  )
 
+  unansweredQuestions$ = this.allQuestions.pipe(
+    map(questions => questions.filter(q => q.answer))
+  )
+
+  constructor(
+    private questionService: QuestionsService
+  ) { }
 }
