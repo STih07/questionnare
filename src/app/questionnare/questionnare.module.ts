@@ -5,6 +5,7 @@ import { QuestionnareEditComponent } from './pages/questionnare-edit/questionnar
 import { QuestionnareCreateComponent } from './pages/questionnare-create/questionnare-create.component';
 import { QuestionnareViewComponent } from './pages/questionnare-view/questionnare-view.component';
 import {RouterModule, Routes} from "@angular/router";
+import {STORAGE} from "./utils/storage.key";
 
 
 const routes: Routes = [
@@ -20,6 +21,9 @@ const routes: Routes = [
      QuestionnareEditComponent,
      QuestionnareCreateComponent,
      QuestionnareViewComponent
+  ],
+  providers: [
+    { provide: STORAGE, useValue: window.localStorage }
   ],
   imports: [
     CommonModule,
