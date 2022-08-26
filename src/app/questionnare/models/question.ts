@@ -9,6 +9,7 @@ interface DummyQuestion {
   description: string;
   type: QuestionType;
   createdAt: Date;
+  answer?: string | string[];
 }
 
 

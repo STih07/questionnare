@@ -10,16 +10,14 @@ import {map, share, tap} from "rxjs";
 })
 export class QuestionnareListComponent {
 
-  private allQuestions = this.questionService.getQuestions$().pipe(
-    tap(() => console.log('Triggered')),
-  );
+  private allQuestions = this.questionService.getQuestions$().pipe();
 
   answeredQuestions$ = this.allQuestions.pipe(
-    map(questions => questions.filter(q => !q.answer))
+    map(questions => questions.filter(q => q.answer))
   )
 
   unansweredQuestions$ = this.allQuestions.pipe(
-    map(questions => questions.filter(q => q.answer))
+    map(questions => questions.filter(q => !q.answer))
   )
 
   constructor(

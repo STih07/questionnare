@@ -14,12 +14,18 @@ import {
 import {QuestionsService} from "./services/questions.service";
 import {DividerModule} from "primeng/divider";
 import {ButtonModule} from "primeng/button";
+import {RippleModule} from "primeng/ripple";
+import {InputTextModule} from "primeng/inputtext";
+import {ReactiveFormsModule} from "@angular/forms";
+import {RadioButtonModule} from "primeng/radiobutton";
+import { CreateOptionsComponent } from './pages/questionnare-create/components/create-options/create-options.component';
+import {ChipsModule} from "primeng/chips";
 
 const routes: Routes = [
   { path: '', component: QuestionnareListComponent },
-  { path: ':id', component: QuestionnareViewComponent },
-  { path: ':id/edit', component: QuestionnareEditComponent },
-  { path: 'create', component: QuestionnareCreateComponent }
+  { path: 'create', component: QuestionnareCreateComponent },
+  { path: 'view/:id', component: QuestionnareViewComponent },
+  { path: 'edit/:id', component: QuestionnareEditComponent },
 ];
 
 @NgModule({
@@ -31,6 +37,7 @@ const routes: Routes = [
      FnPipe,
      AnsweredQuestionsComponent,
      UnansweredQuestionsComponent,
+     CreateOptionsComponent,
   ],
   providers: [
     { provide: STORAGE, useValue: window.localStorage },
@@ -40,7 +47,12 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     DividerModule,
-    ButtonModule
+    ButtonModule,
+    RippleModule,
+    InputTextModule,
+    ReactiveFormsModule,
+    RadioButtonModule,
+    ChipsModule
   ]
 })
 export class QuestionnareModule { }

@@ -1,1 +1,27 @@
-<p>questionnare-create works!</p>
+<button pButton pRipple class=" p-button-outlined" [routerLink]="'..'">Back to Management Page</button>
+
+<h1>Create Question Form</h1>
+
+<form class="question-form" [formGroup]="questionForm" (ngSubmit)="createQuestion()">
+  <h3>Question Description</h3>
+  <div class="field">
+    <input pInputText placeholder="Enter question description" formControlName="description">
+    <small *ngIf="questionForm.controls.description.dirty && questionForm.controls.description.errors?.['required']" class="p-error block">Description is required</small>
+  </div>
+
+  <div>
+    <h3>Type of answer</h3>
+    <div class="flex align-items-start flex-column gap-3">
+      <p-radioButton [value]="questionType.SINGLE" label="Single Option" formControlName="type"></p-radioButton>
+      <p-radioButton [value]="questionType.MULTIPLE" label="Multiple Option" formControlName="type"></p-radioButton>
+      <p-radioButton [value]="questionType.OPEN" label="Open Answer" formControlName="type"></p-radioButton>
+    </div>
+  </div>
+
+
+  <app-create-options *ngIf="isQuestionWithOptions" [form]="questionForm"></app-create-options>
+
+  <button pButton type="submit" [disabled]="questionForm.invalid">Create</button>
+</form>
+
+

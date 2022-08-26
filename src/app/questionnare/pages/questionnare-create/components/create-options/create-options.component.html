@@ -1,0 +1,5 @@
+<div class="field" [formGroup]="form">
+  <h2>Options</h2>
+  <p-chips (focusout)="optionsControl.markAsDirty()" (onAdd)="onAddOption($event)" [allowDuplicate]="false" (onRemove)="onRemoveOption($event)"></p-chips>
+  <small *ngIf="optionsControl.dirty && optionsControl.errors" class="p-error block">Minimum 2 options are required</small>
+</div>

@@ -18,13 +18,13 @@ export class QuestionsService {
     return this.questionsState$.pipe();
   }
 
-  addQuestion(question: Question) {
+  addQuestion(question: Omit<Question, 'id' | 'createdAt'>) {
     const questions = [...this.questionsState$.value];
     questions.push({
       ...question,
       id: this.getNewId(),
       createdAt: new Date(),
-    });
+    } as Question);
     this.updateState(questions);
   }
 
