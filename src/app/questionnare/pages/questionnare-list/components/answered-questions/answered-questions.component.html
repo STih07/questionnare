@@ -1,1 +1,2 @@
-<p>answered-questions works!</p>
+<app-answered-card *ngFor="let question of questions" [question]="question"></app-answered-card>
+<h2 *ngIf="!questions?.length">Oops! No items found</h2>

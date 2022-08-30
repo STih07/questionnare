@@ -1,1 +1,27 @@
-<p>questionnare-edit works!</p>
+<button pButton pRipple class=" p-button-outlined" [routerLink]="'/manage'">Back to Management Page</button>
+
+<h1>Edit Question Form</h1>
+
+<form class="question-form" [formGroup]="questionForm" (ngSubmit)="editQuestion()">
+  <h3>Question Description</h3>
+  <div class="field">
+    <input pInputText placeholder="Enter question description" formControlName="description">
+    <small *ngIf="questionForm.controls.description.dirty && questionForm.controls.description.errors?.['required']" class="p-error block">Description is required</small>
+  </div>
+
+  <div>
+    <h3>Type of answer</h3>
+    <div class="flex align-items-start flex-column gap-3">
+      <p-radioButton [value]="questionType.SINGLE" label="Single Option" formControlName="type"></p-radioButton>
+      <p-radioButton [value]="questionType.MULTIPLE" label="Multiple Option" formControlName="type"></p-radioButton>
+      <p-radioButton [value]="questionType.OPEN" label="Open Answer" formControlName="type"></p-radioButton>
+    </div>
+  </div>
+
+
+  <app-create-options *ngIf="isQuestionWithOptions" [form]="questionForm" [options]="$any(stateQuestion)?.options"></app-create-options>
+
+  <button pButton type="submit" class="mt-5" [disabled]="questionForm.invalid" label="Save"></button>
+</form>
+
+

@@ -1,3 +1,10 @@
+:host {
+  display: block;
+  background: var(--surface-0);
+  border-radius: 0.25rem;
+  padding: 1rem
+}
+
 .question-form {
   display: flex;
   flex-direction: column;

@@ -1,0 +1,17 @@
+<p-card [header]="question.description">
+  <ng-template pTemplate="content">
+    <ng-container *ngIf="question.type == questionType.SINGLE">
+      <p-selectButton [options]="question.options | option" optionLabel="name" [formControl]="answerControl" optionLabel="label"></p-selectButton>
+      <small class="block p-error" *ngIf="answerControl.touched && answerControl.errors?.['required']">You need to choose any option</small>
+    </ng-container>
+    <ng-container *ngIf="question.type == questionType.MULTIPLE">
+      <p-selectButton [options]="question.options | option" optionLabel="name" [formControl]="answerControl" [multiple]="true" optionLabel="label"></p-selectButton>
+    </ng-container>
+    <ng-container *ngIf="question.type == questionType.OPEN">
+      <input pInputText [formControl]="answerControl" placeholder="Enter your answer">
+    </ng-container>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <button pButton label="Save answer" (click)="onAnswerClick()" [disabled]="answerControl.invalid"></button>
+  </ng-template>
+</p-card>

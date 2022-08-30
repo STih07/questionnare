@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
@@ -10,6 +10,7 @@ import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 export class CreateOptionsComponent implements OnInit, OnDestroy {
 
 
+  @Input() options!: string[];
   @Input() form!: FormGroup;
 
 
@@ -26,9 +27,9 @@ export class CreateOptionsComponent implements OnInit, OnDestroy {
     this.optionsControl.removeAt(index);
   }
 
-
   ngOnInit(): void {
-    this.form.addControl('options', new FormArray([], [Validators.required, Validators.minLength(2)]));
+    const controls = this.options?.map(option => new FormControl(option)) ?? [];
+    this.form.addControl('options', new FormArray(controls, [Validators.required, Validators.minLength(2)]));
   }
 
   ngOnDestroy() {

@@ -1,6 +1,6 @@
 import {Inject, Injectable} from '@angular/core';
 import {STORAGE} from "../utils/storage.key";
-import {BehaviorSubject, Observable, of} from "rxjs";
+import {BehaviorSubject, map, Observable, of} from "rxjs";
 import {Question} from "../models/question";
 
 @Injectable()
@@ -15,7 +15,9 @@ export class QuestionsService {
   ) { }
 
   getQuestions$(): Observable<Question[]> {
-    return this.questionsState$.pipe();
+    return this.questionsState$.pipe(
+      map(questions => [...questions])
+    );
   }
 
   addQuestion(question: Omit<Question, 'id' | 'createdAt'>) {
@@ -36,7 +38,15 @@ export class QuestionsService {
   editQuestion(id: number, data: Question) {
     const questions = [...this.questionsState$.value];
     const indexOfQuestion = questions.findIndex(q => q.id === id);
-    questions[indexOfQuestion] = data;
+    console.log(questions[indexOfQuestion] );
+    const oldQuestion = questions[indexOfQuestion];
+    questions[indexOfQuestion] = {
+      ...data,
+      createdAt: oldQuestion.createdAt,
+      id: oldQuestion.id,
+      lastUpdatedAt: new Date()
+    };
+    console.log(questions[indexOfQuestion] );
     this.updateState(questions);
   }
 
@@ -45,6 +55,19 @@ export class QuestionsService {
     const question = questions.find(q => q.id === id);
     if (question) {
       question.answer = answer;
+      question.answeredAt = new Date();
+      question.lastUpdatedAt = new Date();
+    }
+    this.updateState(questions);
+  }
+
+  clearAnswer<T extends Question = any>(id: number) {
+    const questions = [...this.questionsState$.value];
+    const question = questions.find(q => q.id === id);
+    if (question) {
+      question.answer = undefined;
+      question.answeredAt = undefined;
+      question.lastUpdatedAt = new Date();
     }
     this.updateState(questions);
   }

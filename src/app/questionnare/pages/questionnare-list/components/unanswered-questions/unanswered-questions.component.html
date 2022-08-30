@@ -1,1 +1,3 @@
-<p>unanswered-questions works!</p>
+<app-unanswered-card *ngFor="let question of questions" [question]="question">
+</app-unanswered-card>
+<h2 *ngIf="!questions?.length">Oops! No items found</h2>

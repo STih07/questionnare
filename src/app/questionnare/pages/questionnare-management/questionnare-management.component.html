@@ -1,0 +1,19 @@
+<p-button pRipple [routerLink]="'/create'" label="Create a Question"></p-button>
+<button pButton pRipple [routerLink]="'/'" label="Go to List" class="p-button-text"></button>
+
+<ng-container *ngIf="questions$ | async as questions">
+  <h2 *ngIf="!questions?.length">No questions found! Create some</h2>
+  <p-card *ngFor="let question of questions" styleClass="mt-5" [header]="question.description">
+    <ng-template pTemplate="subtitle">
+      {{ question.createdAt | date}}
+    </ng-template>
+    <ng-template pTemplate="content">
+      Type: {{question.type | questionType}}
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+      <button pButton label="Edit" (click)="onEditClick(question)"></button>
+      <button pButton  class="ml-3 p-button-danger p-button-text" label="Delete" (click)="onDeleteClick(question)"></button>
+    </ng-template>
+  </p-card>
+</ng-container>

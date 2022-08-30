@@ -1,4 +1,27 @@
+:host {
+  display: block;
+  height: 80%;
+}
+
 .questions-container {
   display: flex;
   justify-content: space-evenly;
+
+  app-answered-questions, app-unanswered-questions {
+    width: 50%;
+    padding: 0 1rem;
+    overflow-y: auto;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .questions-container {
+    flex-direction: column;
+    p-divider {
+      display: none;
+    }
+    app-answered-questions, app-unanswered-questions {
+      width: 100%;
+    }
+  }
 }

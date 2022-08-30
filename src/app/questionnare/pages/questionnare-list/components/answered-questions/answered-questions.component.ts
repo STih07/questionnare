@@ -6,6 +6,9 @@ import {Question} from "../../../../models/question";
   templateUrl: './answered-questions.component.html',
   styleUrls: ['./answered-questions.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'h-100'
+  }
 })
 export class AnsweredQuestionsComponent {
 

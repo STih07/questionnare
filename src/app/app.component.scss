@@ -1,6 +1,10 @@
 :host {
   display: block;
-  margin: 5rem auto 0;
+  width: 100%;
   max-width: 1180px;
-
+  height: 80%;
+  min-height: 400px;
+  border-radius: 0.5rem;
+  background: var(--surface-200);
+  padding: 2rem;
 }

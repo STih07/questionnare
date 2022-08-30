@@ -10,6 +10,8 @@ interface DummyQuestion {
   type: QuestionType;
   createdAt: Date;
   answer?: string | string[];
+  answeredAt?: Date;
+  lastUpdatedAt?: Date;
 }
 
 
@@ -20,13 +22,13 @@ export interface SingleQuestion extends DummyQuestion {
 }
 
 export interface MultipleQuestion extends DummyQuestion {
-  type: QuestionType.SINGLE;
+  type: QuestionType.MULTIPLE;
   options: string[];
   answer?: string[];
 }
 
 export interface OpenQuestion extends DummyQuestion {
-  type: QuestionType.SINGLE;
+  type: QuestionType.OPEN;
   answer?: string;
 }
 

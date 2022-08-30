@@ -1,0 +1,16 @@
+<p-card [header]="question.description">
+  <ng-template pTemplate="content">
+    <ng-container *ngIf="question.type == questionType.SINGLE">
+      <p-selectButton [options]="question.options | option" optionLabel="name" [formControl]="answerControl" optionLabel="label" [disabled]="true"></p-selectButton>
+    </ng-container>
+    <ng-container *ngIf="question.type == questionType.MULTIPLE">
+      <p-selectButton [options]="question.options | option" optionLabel="name" [formControl]="answerControl" [multiple]="true" optionLabel="label" [disabled]="true"></p-selectButton>
+    </ng-container>
+    <ng-container *ngIf="question.type == questionType.OPEN">
+      <input pInputText [formControl]="answerControl" [disabled]="true">
+    </ng-container>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <button pButton label="clear answer" class="p-button-text" (click)="onClearAnswerClick()" [disabled]="answerControl.invalid"></button>
+  </ng-template>
+</p-card>

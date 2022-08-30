@@ -1,7 +1,8 @@
-<p-button pRipple [routerLink]="'/create'">Create a Question</p-button>
+<p-button pRipple [routerLink]="'/create'" label="Create a Question"></p-button>
+<button pButton pRipple [routerLink]="'/manage'" label="Go to Management Page" class="p-button-text"></button>
 
-<div class="questions-container mt-5">
-  <app-answered-questions *ngIf="answeredQuestions$ | async as answeredQuestions" [questions]="answeredQuestions"></app-answered-questions>
-  <p-divider layout="vertical"></p-divider>
+<div class="questions-container mt-5 h-100">
   <app-unanswered-questions *ngIf="unansweredQuestions$ | async as unansweredQuestions" [questions]="unansweredQuestions"></app-unanswered-questions>
+  <p-divider layout="vertical" class="questions-divider"></p-divider>
+  <app-answered-questions *ngIf="answeredQuestions$ | async as answeredQuestions" [questions]="answeredQuestions"></app-answered-questions>
 </div>
